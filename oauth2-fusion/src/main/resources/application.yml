@@ -1,0 +1,32 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          fusion:
+            clientId: ${OAUTH2_FUSION_CLIENT_ID}
+            clientSecret: ${OAUTH2_FUSION_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: "https://localhost:8443/login/oauth2/code/fusion"
+            scope:
+              - openid
+              - profile
+              - email
+            client-authentication-method: client_secret_basic
+            provider: fusion
+        provider:
+          fusion:
+            authorization-uri: ${OAUTH2_FUSION_AUTHORIZATION_URI}
+            token-uri: ${OAUTH2_FUSION_ACCESS_TOKEN_URI}
+            user-info-uri: ${OAUTH2_FUSION_USER_INFO_URI}
+            jwk-set-uri: ${OAUTH2_FUSION_JWKS_URI}
+            user-name-attribute: email
+server:
+  port: 8443
+  ssl:
+    key-alias: ${SSL_KEY_STORE_ALIAS}
+    key-store-type: ${SSL_KEY_STORE_TYPE}
+    key-store: ${SSL_KEY_STORE}
+    key-store-password: ${SSL_KEY_STORE_PASSWORD}
+    
+    
